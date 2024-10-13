@@ -1,9 +1,12 @@
 # Amiga Joystick Tester
 
-<img src="./img/amiga-joystick-tester.png" alt="Amiga Joystick Tester with Display using a Heltec WiFi Kit32 V3" width="400"/>
-
-
-<img src="./img/amiga-joystick-tester-video-detail.gif" alt="Amiga Joystick Tester with Display using a Heltec WiFi Kit32 V3" width="400"/>
+<table>
+  <tr>
+    <td><img src="./img/amiga-joystick-tester-video.gif" alt="Amiga Joystick Tester with Display using a Heltec WiFi Kit32 V3" width="300"/></td>
+    <td><img src="./img/amiga-joystick-tester-video-detail.gif" alt="Amiga Joystick Tester with Display using a Heltec WiFi Kit32 V3" width="300"/></td>
+  </tr>
+</table>
+<img src="./img/amiga-joystick-tester.png" alt="Amiga Joystick Tester with Display using a Heltec WiFi Kit32 V3" width="300"/>
 
 An **Amiga Joystick Tester** built using an **ESP32-based Heltec WiFi Kit 32 (V3)** board and an **OLED display**. This project allows you to test all the functionalities of an Amiga joystick, including directional inputs and fire buttons, and displays the results on the built-in OLED screen.
 
@@ -35,8 +38,6 @@ The purpose of this project is to provide a simple and effective way to test Ami
 - Visual representation of active, inactive, and previously detected inputs
 
 This tool is particularly useful for enthusiasts and collectors who want to verify the functionality of vintage Amiga joysticks.
-
-<img src="./img/amiga-joystick-tester-video.gif" alt="Amiga Joystick Tester with Display using a Heltec WiFi Kit32 V3" width="400"/>
 
 
 ---
@@ -70,7 +71,7 @@ This project utilizes these pins to read the joystick inputs and display them on
 
 - **Heltec WiFi Kit 32 (V3)**: An ESP32-based development board with a built-in 0.96" OLED display.
 - **Amiga Joystick**: Any joystick compatible with the Amiga DE-9 joystick port.
-- **Breadboard and Jumper Wires**: For making connections between the joystick and the ESP32 board.
+- **Jumper Wires or soldered wires**: For making connections between the joystick and the ESP32 board.
 - **DE-9 Connector**: To connect the joystick to the breadboard or directly to the ESP32.
 
 ---
@@ -173,7 +174,6 @@ Handles displaying the joystick states on the OLED screen.
 
 #### Features:
 
-- **Splash Screen**: Displays an introductory screen on startup.
 - **Input Visualization**: Shows a grid of boxes representing joystick inputs.
   - **Active Inputs**: Boxes corresponding to currently active inputs are filled.
   - **Previously Detected Inputs**: Boxes for inputs that have been activated at least once but are not currently active have a thicker border.
@@ -196,7 +196,6 @@ Handles displaying the joystick states on the OLED screen.
 
 3. **Test the Joystick**:
 
-   - Upon startup, the OLED display will show a splash screen.
    - Move the joystick in all directions and press the fire button(s).
    - The display will show the active inputs and maintain a record of all detected inputs.
    - Use the reset button (if implemented) to clear the detected states.
@@ -215,40 +214,11 @@ This project is open-source and available under the [MIT License](LICENSE).
 
 ---
 
-**Note**: For any issues or contributions, please feel free to open an issue or pull request on the [GitHub repository](https://github.com/yourusername/AmigaJoystickTester).
+**Note**: For any issues or contributions, please feel free to open an issue or pull request on the [GitHub repository](https://github.com/marxram/AmigaJoystickTester).
 
 ---
 
-*Images and diagrams will be added to illustrate the wiring and display output.*
-
 ---
-
-## Additional Information
-
-### Pin Considerations
-
-- **GPIO 2**: On the ESP32, GPIO 2 is connected to the built-in LED and is used for boot modes. It has an internal pull-down resistor. Using GPIO 2 as an input pin can cause issues during boot if the connected device pulls it high. Ensure that connecting the joystick's Up direction to GPIO 2 does not interfere with the boot process. If you experience boot issues, consider using a different GPIO pin.
-
-- **GPIO 3**: GPIO 3 is typically used as the UART RX pin. Using it as a regular GPIO pin may interfere with serial communication, especially if you use the serial port for debugging or programming. It is generally not recommended to use GPIO 3 as a regular input pin unless you are not using serial communication.
-
-- **Alternative Pins**: If you encounter issues with GPIO 2 and 3, consider using other GPIO pins that do not have special functions during boot or normal operation. For example, GPIO 16, 17, 18, 19, 21, 22, and 23 are generally safe to use.
-
-### Recommended Pin Assignments
-
-Given the potential issues with GPIO 2 and 3, it is recommended to use alternative GPIO pins:
-
-| Joystick Pin | Function        | ESP32 GPIO Pin |
-|--------------|-----------------|----------------|
-| Pin 1        | Up              | GPIO **16**    |
-| Pin 2        | Down            | GPIO **17**    |
-| Pin 3        | Left            | GPIO **18**    |
-| Pin 4        | Right           | GPIO **19**    |
-| Pin 5        | Ground          | GND            |
-| Pin 7        | Fire Button 1   | GPIO **22**    |
-| Pin 8 or 9   | Fire Button 2\* | GPIO **23**    |
-
-Adjust your wiring and code accordingly if you choose to use these alternative pins.
-
 ### Class Structure Overview
 
 #### Joystick Class
