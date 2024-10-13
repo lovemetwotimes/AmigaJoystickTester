@@ -10,6 +10,9 @@
 
 An **Amiga Joystick Tester** built using an **ESP32-based Heltec WiFi Kit 32 (V3)** board and an **OLED display**. This project allows you to test all the functionalities of an Amiga joystick, including directional inputs and fire buttons, and displays the results on the built-in OLED screen.
 
+Disclaimer: I created code sections as well as this readme with the use of ChatGPT. --> I cannot guarantee for the cortrectness of everything ;-) But the code compiled and did work. 
+ 
+
 ## Table of Contents
 
 - [Purpose](#purpose)
