@@ -13,12 +13,13 @@
 #define UP_RIGHT_MASK   0x40
 #define DOWN_LEFT_MASK  0x80
 #define DOWN_RIGHT_MASK 0x100
+#define FIRE2_MASK      0x200
 
 
 class Joystick {
   public:
     // Constructor
-    Joystick(int upPin, int downPin, int leftPin, int rightPin, int firePin);
+    Joystick(int upPin, int downPin, int leftPin, int rightPin, int firePin, int fire2Pin);
 
     // Methods
     void begin();
@@ -34,6 +35,7 @@ class Joystick {
     int pinLeft;
     int pinRight;
     int pinFire;
+    int pinFire2;
 
     // Current and detected states (bit masks)
     uint16_t currentState;

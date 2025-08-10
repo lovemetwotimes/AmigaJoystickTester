@@ -4,11 +4,12 @@
 #include "DisplayManager.h"
 
 // Pin definitions
-const int pinUp = 2;
-const int pinDown = 3;
-const int pinLeft = 4;
-const int pinRight = 5;
+const int pinUp = 5;
+const int pinDown = 4;
+const int pinLeft = 3;
+const int pinRight = 2;
 const int pinFire = 6;
+const int pinFire2 =  7;
 
 // Update display if there's a change
 uint16_t  prevCurrentState = 0xFFFF; // Initialize to an invalid state
@@ -16,25 +17,25 @@ uint16_t  prevDetectedStates = 0xFFFF;
 
 
 // Instantiate classes
-Joystick joystick(pinUp, pinDown, pinLeft, pinRight, pinFire);
+Joystick joystick(pinUp, pinDown, pinLeft, pinRight, pinFire, pinFire2);
 DisplayManager displayManager;
 
 void setup() {
   Serial.begin(115200);
-  Serial.println("Setup started.");
+  Serial.println(F("Setup started."));
 
   // Initialize joystick
   joystick.begin();
-  Serial.println("Joystick initialized.");
+  Serial.println(F("Joystick initialized."));
 
   // Initialize display
   displayManager.begin();
-  Serial.println("Display initialized.");
+  Serial.println(F("Display initialized."));
 
   // Show splash screen
   displayManager.showSplashScreen();
 
-  Serial.println("Setup completed.");
+  Serial.println(F("Setup completed."));
 
 
 

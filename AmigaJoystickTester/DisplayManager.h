@@ -4,6 +4,13 @@
 #include <Arduino.h>
 #include <U8g2lib.h>
 
+#ifdef U8X8_HAVE_HW_SPI
+#include <SPI.h>
+#endif
+#ifdef U8X8_HAVE_HW_I2C
+#include <Wire.h>
+#endif
+
 // Constants for joystick bit masks
 #define UP_MASK         0x01
 #define DOWN_MASK       0x02
@@ -14,6 +21,7 @@
 #define UP_RIGHT_MASK   0x40
 #define DOWN_LEFT_MASK  0x80
 #define DOWN_RIGHT_MASK 0x100
+#define FIRE2_MASK      0x200
 
 class DisplayManager {
   public:
@@ -26,7 +34,7 @@ class DisplayManager {
     void updateDisplay(uint16_t  currentState, uint16_t  detectedStates);
 
   private:
-    U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2;
+    U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2;
 };
 
 #endif

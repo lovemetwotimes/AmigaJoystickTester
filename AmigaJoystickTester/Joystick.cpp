@@ -1,7 +1,7 @@
 #include "Joystick.h"
 
-Joystick::Joystick(int upPin, int downPin, int leftPin, int rightPin, int firePin)
-  : pinUp(upPin), pinDown(downPin), pinLeft(leftPin), pinRight(rightPin), pinFire(firePin),
+Joystick::Joystick(int upPin, int downPin, int leftPin, int rightPin, int firePin, int fire2Pin)
+  : pinUp(upPin), pinDown(downPin), pinLeft(leftPin), pinRight(rightPin), pinFire(firePin), pinFire2(fire2Pin),
     currentState(0), detectedStates(0) {
 }
 
@@ -11,6 +11,7 @@ void Joystick::begin() {
   pinMode(pinLeft, INPUT_PULLUP);
   pinMode(pinRight, INPUT_PULLUP);
   pinMode(pinFire, INPUT_PULLUP);
+  pinMode(pinFire2, INPUT_PULLUP);
 }
 
 void Joystick::update() {
@@ -21,6 +22,7 @@ void Joystick::update() {
   bool left = !digitalRead(pinLeft);
   bool right = !digitalRead(pinRight);
   bool fire = !digitalRead(pinFire);
+  bool fire2 = !digitalRead(pinFire2);
 
   // Diagonal detection
   if (up && left) {
@@ -40,6 +42,7 @@ void Joystick::update() {
   }
   
   if (fire) currentState |= FIRE_MASK;
+  if (fire2) currentState |= FIRE2_MASK;
 
   // Update detected states
   detectedStates |= currentState;

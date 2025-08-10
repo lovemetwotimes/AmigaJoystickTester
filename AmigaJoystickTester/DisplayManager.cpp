@@ -3,7 +3,7 @@
 const int smallSquareSize = 2; // Size of the small square
 
 DisplayManager::DisplayManager()
-  : u8g2(U8G2_R0, /* clock=*/ 18, /* data=*/ 17, /* reset=*/ 21) {
+  : u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE) {
 }
 
 void DisplayManager::begin() {
@@ -21,7 +21,7 @@ void DisplayManager::showSplashScreen() {
   u8g2.setFont(u8g2_font_6x12_tr); // Set font with height approximately 12 pixels
 
   // Center the text horizontally
-  const char* headline = "Joystick Tester";
+  const char* headline = "JT";
   int16_t textWidth = u8g2.getStrWidth(headline);
   int16_t textX = (128 - textWidth) / 2;
   u8g2.setCursor(textX, 10); // y position adjusted to fit within 12 pixels
@@ -39,7 +39,7 @@ void DisplayManager::updateDisplay(uint16_t currentState, uint16_t detectedState
   u8g2.drawBox(0, 0, 128, 12);
   u8g2.setDrawColor(0);
   u8g2.setFont(u8g2_font_6x12_tr);
-  const char* headline = "Joystick Tester";
+  const char* headline = "JT";
   int16_t textWidth = u8g2.getStrWidth(headline);
   int16_t textX = (128 - textWidth) / 2;
   u8g2.setCursor(textX, 10);
@@ -112,18 +112,20 @@ void DisplayManager::updateDisplay(uint16_t currentState, uint16_t detectedState
   textPosY += 14;
   u8g2.setCursor(textPosX, textPosY);
 
-  if (currentState & UP_MASK) u8g2.print("Up ");
-  if (currentState & DOWN_MASK) u8g2.print("Down ");
-  if (currentState & LEFT_MASK) u8g2.print("Left ");
-  if (currentState & RIGHT_MASK) u8g2.print("Right ");
-  if (currentState & UP_LEFT_MASK) u8g2.print("Up+L ");
-  if (currentState & UP_RIGHT_MASK) u8g2.print("Up+R ");
-  if (currentState & DOWN_LEFT_MASK) u8g2.print("Down+L ");
-  if (currentState & DOWN_RIGHT_MASK) u8g2.print("Down+R ");
+  if (currentState & UP_MASK) u8g2.print(F("Up "));
+  if (currentState & DOWN_MASK) u8g2.print(F("Down "));
+  if (currentState & LEFT_MASK) u8g2.print(F("Left "));
+  if (currentState & RIGHT_MASK) u8g2.print(F("Right "));
+  if (currentState & UP_LEFT_MASK) u8g2.print(F("Up+L "));
+  if (currentState & UP_RIGHT_MASK) u8g2.print(F("Up+R "));
+  if (currentState & DOWN_LEFT_MASK) u8g2.print(F("Down+L "));
+  if (currentState & DOWN_RIGHT_MASK) u8g2.print(F("Down+R "));
 
   textPosY += 14;
   u8g2.setCursor(textPosX, textPosY);
-  if (currentState & FIRE_MASK) u8g2.print("Fire ");
+  if (currentState & FIRE_MASK) u8g2.print(F("Fire "));
+  textPosY += 14;
+  if (currentState & FIRE2_MASK) u8g2.print(F("Fire2"));
 
 
 
